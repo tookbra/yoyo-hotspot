@@ -1,0 +1,107 @@
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+mybatis:
+  type-aliases-package: com.mars.yoyo.hotspot.admin.entity
+  mapper-locations: classpath:mapper/*.xml
+
+mapper:
+  mappers:
+  - com.mars.yoyo.hotspot.mybatis.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:11000/eureka/
+    eureka-connection-idle-timeout-seconds: 60
+    # register-with-eureka: false
+    # fetch-registry: false
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 30    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间
+
+spring:
+  datasource:
+    master:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    slave:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    type: com.alibaba.druid.pool.DruidDataSource
+  cache:
+    configs:
+      wxToken:
+        maxIdleTime: 600000
+      smsCacheManager:
+        ttl: 60000
+
+  # FREEMARKER (FreeMarkerAutoConfiguration)
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: false
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    settings.default_encoding: UTF-8
+    # 表示所有的模板文件都放在该目录下
+    template-loader-path: classpath:/templates/
+
+  # redis 配置
+  redis:
+    host: r-uf6d5aaabcc49564.redis.rds.aliyuncs.com
+    port: 6379
+#    timeout: 5000
+    password: '2+yT6@j9Ff'
+
+  session:
+    store-type: redis

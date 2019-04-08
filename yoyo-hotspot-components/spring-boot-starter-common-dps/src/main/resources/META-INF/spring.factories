@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.mars.yoyo.hotspot.common.dps.hystrix.HystrixPluginsConfig,\
+  com.mars.yoyo.hotspot.common.dps.config.CommonConfiguration,\
+  com.mars.yoyo.hotspot.common.dps.feign.CustomFeignClientConfiguration,\
+  com.mars.yoyo.hotspot.common.dps.config.MessageConfiguration,\
+  com.mars.yoyo.hotspot.common.dps.secutiry.CoreWebMvcConfigurationSupport

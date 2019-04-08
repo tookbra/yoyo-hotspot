@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.yoyo.hotspot.device.dao.DeviceItemMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.device.domain.DeviceItem" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="power_bank_id" property="powerBankId" jdbcType="VARCHAR" />
+    <result column="slot" property="slot" jdbcType="SMALLINT" />
+    <result column="level" property="level" jdbcType="SMALLINT" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="item_type" property="itemType" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER" />
+    <result column="leased" property="leased" jdbcType="BIT" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <update id="batchUpdate">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update device_item
+      <set>
+        <if test="item.powerBankId != null and item.powerBankId != ''">
+          power_bank_id = #{item.powerBankId},
+        </if>
+        <if test="item.slot != null">
+          slot = #{item.slot},
+        </if>
+        <if test="item.level != null">
+          level = #{item.level},
+        </if>
+        <if test="item.deviceId != null and item.deviceId != ''">
+          device_id = #{item.deviceId},
+        </if>
+        <if test="item.itemType != null">
+          item_type = #{item.itemType},
+        </if>
+        <if test="item.leased != null">
+          leased = #{item.leased},
+        </if>
+        <if test="item.modifyTime != null">
+          modify_time = #{item.modifyTime}
+        </if>
+      </set>
+      where id = #{item.id}
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="deposited" jdbcType="BIT" property="deposited" />
+    <result column="certified" jdbcType="BIT" property="certified" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="country_area_code" jdbcType="VARCHAR" property="countryAreaCode" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="register_ip" jdbcType="VARCHAR" property="registerIp" />
+    <result column="en" jdbcType="BIT" property="en" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="headImgUrl" jdbcType="VARCHAR" property="headimgurl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,157 @@
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+redisson:
+  config:
+    type: single
+    address: redis://127.0.0.1:6379
+
+mybatis:
+    type-aliases-package: com.mars.yoyo.hotspot.ms.domain
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    mappers:
+        - com.mars.yoyo.hotspot.mybatis.MyMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+eureka:
+  client:
+    eureka-connection-idle-timeout-seconds: 60
+    service-url:
+      defaultZone: http://localhost:11000/eureka
+  instance:
+#    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 30    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间
+
+spring:
+  datasource:
+    master:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    slave:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    type: com.alibaba.druid.pool.DruidDataSource
+  cache:
+    configs:
+      smsCache:
+        ttl: 60
+      daysCache:
+        ttl: 86400
+    type: redis
+  redis:
+    database: 1
+    pool:
+      max-wait: 50
+  messages:
+    enable: true
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    cache-seconds: -1
+    basename: message/messages
+config:
+  sms:
+    url: http://106.14.55.160:9000/HttpSmsMt
+    name: hzhxkj
+    pwd: 78d50ffb58360011986d944540f3ca38
+    enable: true
+    #秒数间隔；60秒内只能发送一次
+    seconds-interval: 60000
+    #手机条数限制:单个号码一天内发送短信条数
+    top-number-limit: 10
+    #IP限制：单个IP一天内发送短息条数
+    top-ip-limit: 15
+    #手机号码绑定IP限制：单个手机号在1天内最多可绑定6个IP发送短信
+    top-mobile-ip-limit: 6
+    once-send-num: 100
+
+
+##################################
+feign:
+  httpclient:
+    enabled: true
+  okhttp:
+    enabled: false
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+hystrix:
+  threadpool:
+    HystrixThreadPoolKey:
+      coreSize: 20
+      maximumSize: 30
+      maxQueueSize: 101
+      keepAliveTimeMinutes: 2
+      queueSizeRejectionThreshold: 15
+      metrics:
+        rollingStats:
+          numBuckets: 12
+          timeInMilliseconds: 1440
+    default:
+      coreSize: 20
+      maximumSize: 30
+      maxQueueSize: 101
+      keepAliveTimeMinutes: 2
+      queueSizeRejectionThreshold: 15
+      metrics:
+        rollingStats:
+          numBuckets: 12
+          timeInMilliseconds: 1440
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000

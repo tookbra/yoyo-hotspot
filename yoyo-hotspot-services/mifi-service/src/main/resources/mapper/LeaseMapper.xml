@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.yoyo.hotspot.mifi.dao.LeaseMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.mifi.domain.Lease" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="power_bank_id" property="powerBankId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_type" property="productType" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="passowrd" property="passowrd" jdbcType="VARCHAR" />
+    <result column="lease_no" property="leaseNo" jdbcType="VARCHAR" />
+    <result column="last_lease_no" property="lastLeaseNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="rent_time" property="rentTime" jdbcType="TIMESTAMP" />
+    <result column="returned" property="returned" jdbcType="BIT" />
+    <result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
+    <result column="expected_return_time" property="expectedReturnTime" jdbcType="TIMESTAMP" />
+    <result column="lang_en" property="langEn" jdbcType="BIT" />
+    <result column="overed" property="overed" jdbcType="BIT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="expired_sms" property="expiredSms" jdbcType="BIT" />
+    <result column="sms_expiring" property="smsExpiring" jdbcType="BIT" />
+    <result column="sms_cap" property="smsCap" jdbcType="BIT" />
+    <result column="slot" property="slot" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

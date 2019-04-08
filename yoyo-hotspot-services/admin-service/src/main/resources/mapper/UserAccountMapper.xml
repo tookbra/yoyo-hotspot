@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.UserAccountMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.UserAccount">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="coupon_num" jdbcType="INTEGER" property="couponNum" />
+    <result column="red_envelope_num" jdbcType="INTEGER" property="redEnvelopeNum" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="deposit" jdbcType="DECIMAL" property="deposit" />
+    <result column="deposit_en" jdbcType="DECIMAL" property="depositEn" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="balance_en" jdbcType="DECIMAL" property="balanceEn" />
+  </resultMap>
+</mapper>

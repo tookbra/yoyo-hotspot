@@ -1,0 +1,93 @@
+jwt:
+  token-header: Authorization
+  expire: 10
+  rsa-secret: test123
+
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+eureka:
+  client:
+    eureka-connection-idle-timeout-seconds: 60
+    service-url:
+      defaultZone: http://localhost:11000/eureka/
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 10 # 续约到期时间
+redisson:
+  config:
+    type: single
+    address: redis://127.0.0.1:6379
+
+spring:
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    pool:
+      max-wait: 50
+  jackson:
+    serialization:
+      indent_output: true
+  messages:
+    enable: true
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    cache-seconds: -1
+    basename: message/messages
+
+##################################
+ribbon:
+  #请求处理的超时时间
+  ReadTimeout: 120000
+  #请求连接的超时时间
+  ConnectTimeout: 30000
+feign:
+  httpclient:
+    enabled: true
+  okhttp:
+    enabled: false
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+hystrix:
+  threadpool:
+    HystrixThreadPoolKey:
+      coreSize: 20
+      maximumSize: 30
+      maxQueueSize: 101
+      keepAliveTimeMinutes: 2
+      queueSizeRejectionThreshold: 15
+      metrics:
+        rollingStats:
+          numBuckets: 12
+          timeInMilliseconds: 1440
+    default:
+      coreSize: 20
+      maximumSize: 30
+      maxQueueSize: 101
+      keepAliveTimeMinutes: 2
+      queueSizeRejectionThreshold: 15
+      metrics:
+        rollingStats:
+          numBuckets: 12
+          timeInMilliseconds: 1440
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000

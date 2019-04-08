@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.yml"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--<property name="useMapperCommentGenerator" value="false"/>-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.mars.yoyo.hotspot.mybatis.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8"
+                        userId="root"
+                        password="3vv7xL*k">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.mars.yoyo.hotspot.admin.entity" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.mars.yoyo.hotspot.admin.dao" targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <table tableName="lease">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <!--<table tableName="coupon">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="delivery_channel">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="device">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="device_item">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="pay_order">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="product">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="red_envelope">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="red_envelope_item">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sms_captcha">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sms_log">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sms_mo">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sms_req">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sms_template">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_admin">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_admin_role">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_dictionary">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_menu">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_role">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="sys_role_menu">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_account">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_account_recharge">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_account_withdraw">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_auth">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_coupon">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>
+
+        <table tableName="user_red_envelope">
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            &lt;!&ndash;<columnOverride column="status" jdbcType="BIT" javaType="java.lang.Integer" />&ndash;&gt;
+        </table>-->
+
+    </context>
+</generatorConfiguration>

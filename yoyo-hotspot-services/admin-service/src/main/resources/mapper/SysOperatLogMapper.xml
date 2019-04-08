@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.SysOperatLogMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.SysOperatLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="menu" jdbcType="VARCHAR" property="menu" />
+    <result column="option" jdbcType="VARCHAR" property="option" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+    <result column="operater_time" jdbcType="TIMESTAMP" property="operaterTime" />
+  </resultMap>
+</mapper>

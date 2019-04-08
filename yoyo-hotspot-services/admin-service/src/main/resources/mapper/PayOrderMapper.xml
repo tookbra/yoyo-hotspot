@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.PayOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="pay_channel" jdbcType="INTEGER" property="payChannel" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="currency" jdbcType="CHAR" property="currency" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="pay_ip" jdbcType="VARCHAR" property="payIp" />
+    <result column="device" jdbcType="VARCHAR" property="device" />
+    <result column="body" jdbcType="VARCHAR" property="body" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="error_code" jdbcType="VARCHAR" property="errorCode" />
+    <result column="error_msg" jdbcType="VARCHAR" property="errorMsg" />
+    <result column="notify_url" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="notify_count" jdbcType="INTEGER" property="notifyCount" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="pay_success_time" jdbcType="TIMESTAMP" property="paySuccessTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="payment_id" jdbcType="VARCHAR" property="paymentId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="user_coupon_id" jdbcType="INTEGER" property="userCouponId" />
+  </resultMap>
+</mapper>

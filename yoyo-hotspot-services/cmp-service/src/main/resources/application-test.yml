@@ -1,0 +1,44 @@
+server:
+  port: 10005
+
+cmp:
+  server:
+    baseUrl: http://47.98.156.88:32003
+    port: 32003
+    userId: 118
+    apiKey: 8e611091f71fe735d4c951bea1d0faf1
+    requestUrl:
+      sendOrder: /api/v1/sendOrder?product_id={product_id}&cardno={cardno}&iseffect={iseffect}&out_trade_no={out_trade_no}
+      amount: /api/v1/getAmount
+      chaxun: /api/v1/getChaxun?cardno={cardno}
+      sendMsg: /api/v1/sendmsg?cardno={cardno}&content={content}
+      msgStatus: /api/v1/msgstatus?msgid={msgid}
+      start: /api/v1/start?cardno={cardno}
+      stop: /api/v1/stop?cardno={cardno}
+    proxy:
+      enable: false
+swagger:
+  ui:
+    enabled: true
+    basePackage: com.tookbra.wifi.iot.cmp.controller
+    title: 中移物联网能力调用
+    description: 中移物联网能力调用
+    termUrl: tookbra.com
+    version: 0.0.1
+    email: tookbra@gmail.com
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+eureka:
+  client:
+    eureka-connection-idle-timeout-seconds: 60
+    service-url:
+      defaultZone: http://localhost:11000/eureka/
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 10 # 续约到期时间

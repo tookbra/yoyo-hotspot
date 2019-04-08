@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.mars.yoyo.hotspot.cache.RedissonAutoConfiguration,\
+  com.mars.yoyo.hotspot.cache.RedisCacheAutoConfiguration

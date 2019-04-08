@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.mars.yoyo.hotspot.db.config.DataSourceConfiguration,\
+com.mars.yoyo.hotspot.db.config.EnablePageAutoConfiguration

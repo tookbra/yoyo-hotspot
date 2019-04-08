@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.SmsCaptchaMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.SmsCaptcha">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="captcha" jdbcType="CHAR" property="captcha" />
+    <result column="sms_type" jdbcType="VARCHAR" property="smsType" />
+    <result column="req_id" jdbcType="VARCHAR" property="reqId" />
+    <result column="template_id" jdbcType="INTEGER" property="templateId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+</mapper>

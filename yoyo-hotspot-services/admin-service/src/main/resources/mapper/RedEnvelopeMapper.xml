@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.RedEnvelopeMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.RedEnvelope">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="channel" jdbcType="SMALLINT" property="channel" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="is_generate" jdbcType="BIT" property="isGenerate" />
+    <result column="is_en" jdbcType="BIT" property="isEn" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,6 @@
+server:
+  port: 10006
+spring:
+  application:
+    name: mifi-device-server
+

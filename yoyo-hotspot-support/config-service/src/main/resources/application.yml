@@ -1,0 +1,20 @@
+logging:
+  level:
+    com.mars.yoyo.hotspot.config: info
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+# git管理配置
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://git.hzaodong.com/yoyo/mifi-repo.git
+          searchPaths: mifi-repo
+          username: tookbra
+          password: cql159357
+          force-pull: true
+management:
+  security:
+    enabled: false

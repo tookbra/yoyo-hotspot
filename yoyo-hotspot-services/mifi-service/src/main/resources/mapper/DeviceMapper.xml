@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.yoyo.hotspot.mifi.dao.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.mifi.domain.Device" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="box_id" property="boxId" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="remain_num" property="remainNum" jdbcType="SMALLINT" />
+    <result column="last_heart" property="lastHeart" jdbcType="TIMESTAMP" />
+    <result column="server_address" property="serverAddress" jdbcType="VARCHAR" />
+    <result column="server_port" property="serverPort" jdbcType="SMALLINT" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER" />
+    <result column="delivery_channel" property="deliveryChannel" jdbcType="INTEGER" />
+    <result column="delivery_name" property="deliveryName" jdbcType="VARCHAR" />
+    <result column="address_en" property="addressEn" jdbcType="VARCHAR" />
+    <result column="address_detail" property="addressDetail" jdbcType="VARCHAR" />
+    <result column="address_detail_en" property="addressDetailEn" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.yoyo.hotspot.mifi.dao.RentMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.mifi.domain.Rent" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="power_bank_id" property="powerBankId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="passowrd" property="passowrd" jdbcType="CHAR" />
+    <result column="rent_no" property="rentNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="rent_time" property="rentTime" jdbcType="TIMESTAMP" />
+    <result column="returned" property="returned" jdbcType="BIT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
+    <result column="expected_return_time" property="expectedReturnTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="slot" property="slot" jdbcType="SMALLINT" />
+    <result column="lang_en" property="langEn" jdbcType="BIT" />
+    <result column="expected_state" property="expectedState" jdbcType="INTEGER" />
+  </resultMap>
+
+
+  <sql id="BaseColumnList">
+    id, user_id, device_id, product_id, product_name, address, rent_no, order_no, returned,
+    rent_time, return_time, expected_return_time, lang_en, expected_state
+  </sql>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select <include refid="BaseColumnList"/>
+    from rent where user_id = #{userId} and state !=2 order by rent_time desc
+  </select>
+</mapper>

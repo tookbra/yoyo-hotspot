@@ -1,0 +1,40 @@
+server:
+  port: 10005
+
+cmp:
+  server:
+    baseUrl: http://47.98.156.88:32003
+    port: 32003
+    userId: 118
+    apiKey: 8e611091f71fe735d4c951bea1d0faf1
+    requestUrl:
+      sendOrder: ${cmp.server.baseUrl}/api/v1/sendOrder?product_id={product_id}&cardno={cardno}&iseffect={iseffect}&out_trade_no={out_trade_no}
+      amount: ${cmp.server.baseUrl}/api/v1/getAmount
+      chaxun: ${cmp.server.baseUrl}/api/v1/getChaxun?cardno={cardno}
+      sendMsg: ${cmp.server.baseUrl}/api/v1/sendmsg?cardno={cardno}&content={content}
+      msgStatus: ${cmp.server.baseUrl}/api/v1/msgstatus?msgid={msgid}
+      start: ${cmp.server.baseUrl}/api/v1/start?cardno={cardno}
+      stop: ${cmp.server.baseUrl}/api/v1/stop?cardno={cardno}
+    proxy:
+      enable: false
+flow:
+  server:
+    baseUrl: http://oapi.v3.mifi.newding.com
+    authToken: hzhx_78054_htss_0326
+    requestUrl:
+      deviceUpdate: ${flow.server.baseUrl}/device/update
+    proxy:
+      enable: false
+swagger:
+  ui:
+    enabled: true
+    basePackage: com.tookbra.wifi.iot.cmp.controller
+    title: 中移物联网能力调用
+    description: 中移物联网能力调用
+    termUrl: tookbra.com
+    version: 0.0.1
+    email: tookbra@gmail.com
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml

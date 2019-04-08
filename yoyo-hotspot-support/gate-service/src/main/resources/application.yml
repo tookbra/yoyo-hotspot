@@ -1,0 +1,170 @@
+spring:
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+      default-property-inclusion: non_null
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:11000/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 30    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间
+
+redisson:
+  config:
+    type: single
+    address: redis://127.0.0.1:6379
+
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+##################################
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000 # Hystrix超时时间
+          strategy: THREAD
+
+ribbon:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  ServerListRefreshInterval: 2000
+  ReadTimeout: 30000 # 处理时间
+  ConnectTimeout: 30000 # 连接时间
+  MaxAutoRetries: 0 #最大自动重试次数
+  MaxAutoRetriesNextServer: 1 # 换实例重试次数
+  MaxTotalHttpConnections: 2000 # 最大http连接数，越大越好，但到到达一个临界点之后，就不会提高响应速度了
+  MaxConnectionsPerHost: 1000 # 每个host连接数
+
+
+#hystrix:
+#  threadpool:
+#    HystrixThreadPoolKey:
+#      coreSize: 20
+#      maximumSize: 30
+#      maxQueueSize: 101
+#      keepAliveTimeMinutes: 2
+#      queueSizeRejectionThreshold: 15
+#      metrics:
+#        rollingStats:
+#          numBuckets: 12
+#          timeInMilliseconds: 1440
+#    default:
+#      coreSize: 20
+#      maximumSize: 30
+#      maxQueueSize: 101
+#      keepAliveTimeMinutes: 2
+#      queueSizeRejectionThreshold: 15
+#      metrics:
+#        rollingStats:
+#          numBuckets: 12
+#          timeInMilliseconds: 1440
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#          thread:
+#            timeoutInMilliseconds: 10000
+#    xinghao:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          semaphore:
+#            maxConcurrentRequests: 50
+#      fallback:
+#        isolation:
+#          semaphore:
+#            maxConcurrentRequests: 20
+#
+zuul:
+  okhttp:
+    enabled: true
+  semaphore:
+    max-semaphores: 500
+  host:
+    socket-timeout-millis: 30000 # socket超时时间，如果使用service-id方式是不用配置的
+    connect-timeout-millis: 30000 # 连接时间semaphores
+    max-total-connections: 5000  # 最大连接数，值越大越好，但到到达一个临界点之后，就不会提高响应速度了
+    max-per-route-connections: 5 # 每个router最大连接数，降低请求时间，越小越好，但达到一定层级就没用了
+  ignored-services: "*"
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  sensitive-headers:
+  prefix: /api #为zuul设置一个公共的前缀
+#  ratelimit: # 网关限流
+#    key-prefix: gate_rate
+#    enabled: true
+#    repository: REDIS #REDIS, JPA, IN_MEMORY
+#    behind-proxy: true
+#    default-policy: #optional - will apply unless specific policy exists
+#      limit: 200
+#      refresh-interval: 60 #default value (in seconds)
+#      type: #optional
+#        - user
+#        - origin
+#        - url
+  routes:
+    mifi:
+      path: /mifi/**
+      serviceId: MIFI-SERVER
+    auth:
+      path: /auth/**
+      serviceId: MIFI-AUTH-SERVER
+    device:
+      path: /device/**
+      serviceId: MIFI-DEVICE-SERVER
+#hystrix:
+#  threadpool:
+#    default:
+#      coreSize: 1000 ##并发执行的最大线程数，默认10
+#      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+#      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 50000
+#          strategy: SEMAPHORE
+
+gate:
+  ignore:
+    startWith: /static,/auth/bind,/auth/login,/auth/wx/validate,/auth/wx/login,/mifi/products,/mifi/sms/captcha,/mifi/sms/sendCaptcha,/mifi/wechat/config,/mifi/webhooks,/mifi/wechat/auth,/mifi/device,/device/device,/device/device/channels
+
+auth:
+  serviceId: ace-auth
+  user:
+    token-header: Authorization
+  client:
+    token-header: x-client-token
+    id: ace-gate  #不填则默认读取spring.application.name
+    secret: 123456

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mifi-eureka-server
+logging:
+  config: classpath:logback.xml
+  level:
+    root: INFO
+  path: ./logs

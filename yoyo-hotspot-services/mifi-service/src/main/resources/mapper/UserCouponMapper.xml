@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mars.yoyo.hotspot.mifi.dao.UserCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.mifi.domain.UserCoupon" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="BIT" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mofidy_time" property="mofidyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="selectEnableByUserId" resultType="com.mars.yoyo.hotspot.mifi.pojo.UserCouponPojo">
+    select a.money, a.lang_en as langEn, a.end_date as endDate, a.status as status, b.id as couponId from coupon a, user_coupon b
+    <where>
+      and b.coupon_id = a.id
+      <if test="userId != null">
+        and b.user_id = #{userId}
+      </if>
+      and b.state = 0
+      and a.deleted = 0
+    </where>
+  </select>
+  <select id="selectByUserCouponId" resultType="com.mars.yoyo.hotspot.mifi.pojo.UserCouponPojo">
+    select a.money, a.lang_en as langEn, a.end_date as endDate, b.id as couponId from coupon a, user_coupon b
+    <where>
+      <if test="userId != null">
+        and b.user_id = #{userId}
+      </if>
+      <if test="userCouponId != null">
+        and b.id = #{userCouponId}
+      </if>
+      and a.id = b.coupon_id
+      and b.state = 0
+      and a.deleted = 0
+    </where>
+  </select>
+</mapper>

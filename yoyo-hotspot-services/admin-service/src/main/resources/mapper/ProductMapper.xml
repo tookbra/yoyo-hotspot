@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.yoyo.hotspot.admin.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.mars.yoyo.hotspot.admin.entity.Product">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_type" jdbcType="INTEGER" property="productType" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="caped" jdbcType="BIT" property="caped" />
+    <result column="cap_price" jdbcType="DECIMAL" property="capPrice" />
+    <result column="unlimited" jdbcType="BIT" property="unlimited" />
+    <result column="limited" jdbcType="INTEGER" property="limited" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="product_name_en" jdbcType="VARCHAR" property="productNameEn" />
+    <result column="price_en" jdbcType="DECIMAL" property="priceEn" />
+    <result column="description_en" jdbcType="VARCHAR" property="descriptionEn" />
+    <result column="gifted" jdbcType="BIT" property="gifted" />
+    <result column="limit_num" jdbcType="INTEGER" property="limitNum" />
+    <result column="gift_msg" jdbcType="VARCHAR" property="giftMsg" />
+    <result column="gift_msg_en" jdbcType="VARCHAR" property="giftMsgEn" />
+  </resultMap>
+</mapper>

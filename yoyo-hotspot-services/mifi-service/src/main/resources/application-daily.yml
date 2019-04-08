@@ -1,0 +1,222 @@
+logging:
+  level: debug
+  path: ./logs
+  config: classpath:logback-spring.xml
+
+wechat:
+  appId: "wxac6d4a205755921a"
+  secret: "fff3f9ccdb7217b0837a5a70229ff8ae"
+  token: "cql159357"
+  aesKey: "acO4qaFUvRiYmz8FdRSocUXQz4oz6oh5G0pIsBOYjn1"
+  url: https://localhost:30001/#/
+  pay:
+    mchId: 1503881911
+    mchKey: 487e8fb9d1529adcefa86898390dbda0
+    subAppId: 2
+    subMchId: 2
+    keyPath: 2
+    useSandboxEnv: true
+    notifyUrl: https://mifi.huofish.com/#/auth
+
+paypal:
+  client:
+    id: AS29-V6Tr2LduEF1kA8Kfl6J4gPTUim3plqG1N15r4OcYa8j85pjJDOFnpGs9-Wt1qZCOerAyoKkyAnU
+    secret: EI-slBVeXvSY_DSdt3FZ2hTD4WrH5IS4QV-ZmNQm-onlSlU88chHe6Pcy1wmFKxgcvEjGHTf61zt-hgl
+    mode: sandbox
+    notifyUrl: https://mifi.huofish.com/api/mifi/webhooks/paypal
+    returnUrl: http://localhost:30001/#/
+    cancelUrl: http://localhost:30001/#/
+
+flow:
+  server:
+    baseUrl: http://oapi.v3.mifi.newding.com
+    authToken: hzhx_78054_htss_0326
+    requestUrl:
+      deviceUpdate: ${flow.server.baseUrl}/device/update
+      cdrDevice: ${flow.server.baseUrl}/cdr/device
+      cdrBrand: ${flow.server.baseUrl}/cdr/brand
+      pkgOrder: ${flow.server.baseUrl}/pkg/order
+      pkgRecord: ${flow.server.baseUrl}/pkg/record
+
+redisson:
+  config:
+    type: single
+    address: redis://127.0.0.1:6379
+
+mybatis:
+    type-aliases-package: com.mars.yoyo.hotspot.mifi.domain
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    mappers:
+        - com.mars.yoyo.hotspot.mybatis.MyMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+#feign:
+#  httpclient:
+#    enabled: true
+#  #请求和响应GZIP压缩支持
+#  compression:
+#    request:
+#      enabled: true
+#      mime-types: text/xml,application/xml,application/json
+#      min-request-size: 2048
+#    response:
+#      enabled:  true
+eureka:
+  client:
+    eureka-connection-idle-timeout-seconds: 60
+    service-url:
+      defaultZone: http://localhost:11000/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 30    # 续约更新时间间隔
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间
+
+spring:
+  datasource:
+    master:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    slave:
+      url: jdbc:mysql://rm-uf6af676f085ixq1oo.mysql.rds.aliyuncs.com/mifi?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+      username: root
+      password: 3vv7xL*k
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      #检测连接是否有效的sql
+      validation-query: SELECT 'x'
+      validation-query-timeout: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+    type: com.alibaba.druid.pool.DruidDataSource
+  cache:
+    configs:
+      wxToken:
+        maxIdleTime: 600000
+      smsCacheManager:
+        ttl: 60000
+      idCacheManager:
+        maxIdleTime: 300
+        ttl: 300
+        maxSize: 60000
+    type: redis
+  redis:
+    database: 1
+    pool:
+      max-wait: 50
+  jackson:
+    serialization:
+      indent_output: true
+  messages:
+    enable: true
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    cache-seconds: -1
+    basename: message/messages
+##################################
+feign:
+  httpclient:
+    enabled: true
+  okhttp:
+    enabled: false
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+ribbon:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  ServerListRefreshInterval: 2000
+  ReadTimeout: 30000 # 处理时间
+  ConnectTimeout: 30000 # 连接时间
+  MaxAutoRetries: 0 #最大自动重试次数
+  MaxAutoRetriesNextServer: 1 # 换实例重试次数
+  MaxTotalHttpConnections: 2000 # 最大http连接数，越大越好，但到到达一个临界点之后，就不会提高响应速度了
+  MaxConnectionsPerHost: 1000 # 每个host连接数
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000 # Hystrix超时时间
+          strategy: THREAD
+#hystrix:
+#  threadpool:
+#    HystrixThreadPoolKey:
+#      coreSize: 20
+#      maximumSize: 30
+#      maxQueueSize: 101
+#      keepAliveTimeMinutes: 2
+#      queueSizeRejectionThreshold: 15
+#      metrics:
+#        rollingStats:
+#          numBuckets: 12
+#          timeInMilliseconds: 1440
+#    default:
+#      coreSize: 20
+#      maximumSize: 30
+#      maxQueueSize: 101
+#      keepAliveTimeMinutes: 2
+#      queueSizeRejectionThreshold: 15
+#      metrics:
+#        rollingStats:
+#          numBuckets: 12
+#          timeInMilliseconds: 1440
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#          thread:
+#            timeoutInMilliseconds: 10000
+#    xinghao:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          semaphore:
+#            maxConcurrentRequests: 50
+#      fallback:
+#        isolation:
+#          semaphore:
+#            maxConcurrentRequests: 20
