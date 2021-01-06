@@ -34,7 +34,7 @@
         <fastjson.version>1.2.47</fastjson.version>
         <paypal.version>1.14.0</paypal.version>
         <joda.version>2.9.9</joda.version>
-        <xstream.version>1.4.11.1</xstream.version>
+        <xstream.version>1.4.15</xstream.version>
     </properties>
 
     <dependencyManagement>
